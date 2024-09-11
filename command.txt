@@ -1,0 +1,11 @@
+pacman -Syu
+pacman -S mingw-w64-x86_64-gcc
+pacman -S mingw-w64-x86_64-pkg-config
+pacman -S mingw-w64-x86_64-poppler
+pacman -S mingw-w64-x86_64-opencv
+pacman -S mingw-w64-x86_64-tesseract-ocr
+pacman -S mingw-w64-x86_64-leptonica
+
+export PATH=/c/MinGW/bin:$PATH
+
+g++ solution.cpp -o compress_pdf -I/mingw64/include -L/mingw64/lib -lpoppler-cpp `pkg-config --cflags --libs opencv4` -ltesseract

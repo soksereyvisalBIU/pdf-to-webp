@@ -1,0 +1,1 @@
+g++ -o pdf_reducer solution1.cpp -I/mingw64/include -I/mingw64/include/opencv4 -I/mingw64/include/tesseract -L/mingw64/lib -lpoppler-cpp -lpoppler -lopencv_core -lopencv_imgcodecs -lopencv_imgproc -ltesseract -lleptonica

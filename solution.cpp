@@ -21,7 +21,7 @@ namespace fs = std::filesystem;
  * @param img The Poppler image to convert.
  * @return cv::Mat The converted OpenCV image.
  */
-cv::Mat popplerImageToMat(poppler::image &img)
+cv::Mat popplerImageToMat(poppler::image& img)
 {
     int width = img.width();
     int height = img.height();
@@ -38,7 +38,7 @@ cv::Mat popplerImageToMat(poppler::image &img)
  * @param target_width The desired width after resizing.
  * @return cv::Mat The resized image.
  */
-cv::Mat resizeImage(const cv::Mat &img, int target_width)
+cv::Mat resizeImage(const cv::Mat& img, int target_width)
 {
     int original_width = img.cols;
     int original_height = img.rows;
@@ -56,7 +56,7 @@ cv::Mat resizeImage(const cv::Mat &img, int target_width)
  * @param image The input image for OCR.
  * @param output_text_file The file path to save the recognized text.
  */
-void performOCR(const cv::Mat &image, const string &output_text_file)
+void performOCR(const cv::Mat& image, const string& output_text_file)
 {
     tesseract::TessBaseAPI ocr;
     if (ocr.Init(nullptr, "eng"))
@@ -84,9 +84,9 @@ void performOCR(const cv::Mat &image, const string &output_text_file)
  * @param output_file The file path to save the WebP image.
  * @param quality The quality of the saved WebP image (0-100).
  */
-void saveAsWebP(const cv::Mat &image, const string &output_file, int quality)
+void saveAsWebP(const cv::Mat& image, const string& output_file, int quality)
 {
-    vector<int> compression_params = {cv::IMWRITE_WEBP_QUALITY, quality};
+    vector<int> compression_params = { cv::IMWRITE_WEBP_QUALITY, quality };
     if (!cv::imwrite(output_file, image, compression_params))
     {
         cerr << "Error saving image as WebP.\n";
@@ -102,7 +102,7 @@ void saveAsWebP(const cv::Mat &image, const string &output_file, int quality)
  * @param target_width The desired width for the output images.
  * @param quality The quality for the output WebP images.
  */
-void processPDF(const string &pdf_file, const string &output_dir, int dpi, int target_width, int quality)
+void processPDF(const string& pdf_file, const string& output_dir, int dpi, int target_width, int quality)
 {
     // Load the PDF document.
     unique_ptr<poppler::document> doc(poppler::document::load_from_file(pdf_file));
@@ -163,10 +163,10 @@ void processPDF(const string &pdf_file, const string &output_dir, int dpi, int t
  * @param target_width The desired width for the output images.
  * @param quality The quality for the output WebP images.
  */
-void processDirectory(const string &input_dir, const string &output_dir, int dpi, int target_width, int quality)
+void processDirectory(const string& input_dir, const string& output_dir, int dpi, int target_width, int quality)
 {
     // Iterate through all files and directories in the input directory
-    for (const auto &entry : fs::recursive_directory_iterator(input_dir))
+    for (const auto& entry : fs::recursive_directory_iterator(input_dir))
     {
         if (entry.is_regular_file() && entry.path().extension() == ".pdf")
         {
@@ -190,8 +190,8 @@ void processDirectory(const string &input_dir, const string &output_dir, int dpi
 int main()
 {
     // Define input/output directories, DPI, target image width, and WebP quality.
-    string input_dir = "C:/Users/Pulse/Desktop/pdf";
-    string output_dir = "C:/Users/Pulse/Desktop/text";
+    string input_dir = "D:/omg/pdf";
+    string output_dir = "D:/omg/pdfs";
     int dpi = 150;
     int target_width = 700;
     int quality = 75;
